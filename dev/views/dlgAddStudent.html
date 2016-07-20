@@ -1,0 +1,18 @@
+<div class="self-define addStudent" style="width:790">
+	<div>
+		<ul >
+			<li class="col-self-10" ng-repeat="item in students" ng-click="checkedStu($index)">
+			<div style="position: relative;">
+				<p ><img ng-src="{{item.childAvatar? contextPath+'/'+item.childAvatar : ''}}" width="65" height="65"></p>				
+				<p ng-class="{'checked':item.dis}" ><span></span></p>
+			</div>
+				<p><span class="snum">{{item.childNo}}</span><span class="sname">{{item.childName}}</span></p>
+			</li>
+		</ul>
+	</div>
+	<div class="modal-footer no-am-bt">
+		<button type="button" class="btn btn-default btn-do" ng-click="doCheck()">确定</button>
+		<button type="button" class="btn btn-default btn-cancel" ng-click="close()">取消</button>
+	</div>
+</div>
+

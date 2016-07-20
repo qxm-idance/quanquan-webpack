@@ -1,0 +1,37 @@
+/*.modal-content {background-color: #18456e;border-color:#104d6a;}*/
+/*.modal-header {border-bottom-color:#104d6a;color: #fff;background-color: #194f7f;}*/
+.modal-body {color:#333;}
+/*.modal-content .modal-close .close {color:#333;text-shadow:none;opacity: 1;}*/
+/*.modal-footer {background-color: #163041;border-top-color:#104d6a;}*/
+/*.modal-footer .btn{color: #ffffff;background-color: #428bca;border-color: #357ebd;}*/
+.modal-title{color:#333;}
+
+/*chongxie*/
+.modal-header{
+    border:1px solid #d7edfc;
+    padding:10px 15px;
+    color:#333;
+    background-color:#edf9ff;
+    margin:30px 40px 0;
+}
+
+.modal-footer{text-align:center;border-top: none}
+.modal-footer .btn{
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 8px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #1b91c0;
+    background-color: #45b2e8;
+    color: #fff;
+}
+.modal-footer .btn.btn-cancel{
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: #0967b0;
+}
+.modal-footer .btn.btn-do{border: 1px solid #1b91c0; background-color:#45b2e8; color:#fff;}

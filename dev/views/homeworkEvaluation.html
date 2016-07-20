@@ -1,0 +1,139 @@
+<div ng-controller="classListCtrl"  ng-include src="'views/leftClassList.html'"></div>
+<div class="main-center">
+    <div class="main-center-wrapper child-page-center homework-evaluation">
+        <form class="mod mod-homework-details">
+            <h2 class="mod-hd">
+                <i class="icon icon-theme"></i>
+                <span class="title">作业详情-【{{p.object}}作业】</span>
+            </h2>
+            <div class="mod-bd">
+                <h3>作业评价</h3>
+                <div>
+                    <div class="work-evaluation unEvalu" ng-if="operType==2 && p.toAll=='' && toSome[0]=='' ">
+                        <div>
+                            <a href="javascript:void(0)" ng-click="changeOperType()">还没做出任何评价，请尽快评价！</a>
+                            <p><a href="javascript:void(0)" class="btn-evaluate pull-right" ng-click="changeOperType()"></a></p>
+                        </div>
+                    </div>
+                    <!--评价作业操作 start-->
+                    <div class="work-evaluation doEvalu" ng-if="operType==1 || operType==3">
+                        <div class="whole">
+                            <label>整体评价</label>
+                            <textarea autofocus placeholder="#编辑内容#" ng-model="p.toAll"></textarea>
+                        </div>
+                        <div class="personal">
+                            <label>个别评价</label>
+                            <ul>
+                                <li ng-repeat="item in persEvalList">
+                                    <div class="add-stu" >
+                                        <p ng-if="item.addBtnShow">只有添加学生才能发言哦! <a href="javascript:void(0)" class="btn-add-stu" ng-click="addStudent($index)"></a></p>
+                                        <p ng-if="item.toSelfShow">{{item._toSelfVal}}</p>
+                                    </div>
+                                    <div class="addStuPannel" ng-if="item.addStuPlshow">
+                                        <div class="addStudent">
+                                            <div>
+                                                <ul>
+                                                    <li class="col-self-10" ng-repeat="stu in students" ng-click="checkedStu($index,item._ind)">
+                                                    <div style="position: relative;">
+                                                        <p ><img src="{{stu.childAvatar}}" width="65" height="65"></p>
+                                                        <p ng-class="{'checked':stu.dis}" ><span></span></p>
+                                                    </div>
+                                                        <p><span class="snum">{{stu.childNo}}</span><span class="sname">{{stu.childName}}</span></p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="modal-footer no-am-bt">
+                                                <button type="button" class="btn btn-default btn-do" ng-click="doCheck($index)">确定</button>
+                                                <button type="button" class="btn btn-default btn-cancel" ng-click="cancelCheck($index)">取消</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <textarea autofocus placeholder="#编辑内容#" ng-model="item.toSelfContent"></textarea>
+                                    <p style="text-align: right">
+                                        <div class="btn-group ui-checkbox" style="width:70px; display:inline-block">
+                                            <label class="btn col-xs-2" ng-class="{active:item.isPrivat}" ng-model="item.isPrivat"  btn-checkbox-true="1" btn-checkbox-false="0" btn-checkbox>
+                                                <i ng-class="{checked:item.isPrivat}"></i> 单独发送
+                                            </label>
+                                        </div>
+                                        <i class="icon icon-del-2" ng-click="delPersEvalue($index)"></i>
+                                    </p>
+                                </li>
+                            </ul>
+                            <p><a class="one-more" ng-click="addPersEvalue()"><i class="icon icon-edit"></i><span>再写一条</span></a></p>
+                        </div>
+                        <div class="modal-footer no-am-bt">
+
+                            <button type="button" class="btn btn-default btn-do" ng-click="setEvaluation()"  ng-class="{disabled:!p.toAll && !persEvalList[0].toSelfContent}" title="{{{true: '个体评价和整体评价至少填一个', false: ''}[!p.toAll && !persEvalList[0].toSelfContent]}}" ng-disabled="!p.toAll && !persEvalList[0].toSelfContent" >发布</button>
+
+                            <button type="button" class="btn btn-default btn-cancel" ng-click="cancelEvaluation()">取消</button>
+                        </div>
+                    </div>
+                    <!--评价作业操作 end-->
+                </div>
+                <!--评价详情展示 start-->
+                <div ng-if="operType==2&&(p.toAll!='' || toSome[0]!='')">
+                    <div class="work-evaluation evalued" >
+                        <div class="all">
+                            <label class="col-self-tit">整体评价:</label>
+                            <div class="col-self-con">{{p.toAll}}</div>
+                        </div>
+                        <div class="personal" >
+                            <label class="col-self-tit">个别评价:</label>
+                            <ul class="col-self-con">
+                                <li ng-repeat="item in toSome">
+                                    <p class="snum">{{item.childNo}}</p>
+                                    <p class="evaluCon">{{item.content}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--评价详情展示 end-->
+                <!--作业内容 start-->
+                <h3>作业内容</h3>
+                <ul class="work-content">
+                    <li ng-repeat="item in homework" ng-class="{'no-bd':$last}">
+                        <p>{{$index+1}}.{{item.task}}</p>
+                        <!-- <p ng-if="$last"><a class="btn-trans pull-right"></a></p> -->
+                    </li>
+                    <p ng-if="homework.length==0" class="no-data">无数据</p>
+                </ul>
+                <!--作业内容 end-->
+            </div>
+        </form>
+        <div class="mod mod-homework-count">
+            <h3 class="mod-hd">作业统计</h3>
+            <div class="mod-bd">
+                <ul class="count-tab-lists btn-group ">
+                    <li class="btn ui-btn ui-btn-primary"
+                        ng-repeat="item in workDetailCount"
+                        ng-click="onDetailChange($index)"
+                        ng-class="{'tab-selected':p.countModel==$index,'first-tab':$first,'last-tab':$last}"
+                        ng-model="p.countModel"
+                        btn-radio="'{{$index}}'">{{item.text}}({{item.count}})人</li>
+                </ul>
+                <ul class="count-details" ng-if="p.countModel==$index" ng-repeat="items in workDetailContent track by $index">
+                <!-- <li ng-repeat="item in items.slice((currentPage-1)*.pageSize,currentPage*.pageSize)" ng-class="{'last-tab':$last}">  -->
+                    <li ng-repeat="item in itemShow" ng-class="{'last-tab':$last}">
+                        <div class="user-pic">
+                            <img ng-src="{{item.childAvatar}}">
+                        </div>
+                        <div class="con">
+                            <p class="con-first"><strong>{{item.childNo}}</strong><span class="date">提交时间:{{item.date | date:'yyyy-mm-dd'}}</span></p>
+                            <p><span class="name">{{item.childName}}</span> | <span class="kemu">科目:</span><span>{{item.childName}}</span></p>
+                            <p>备注:{{item.ps}}</p>
+                        </div>
+                    </li>
+                    <p ng-if="!items.length" class="noData">无数据</p>
+                    <div class="ui-pager"
+                         ui-pager
+                         ng-model="currentPage"
+                         page-size="pageSize"
+                         on-pager="onPager(currentPage,items)"
+                         total-items="items.length">
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

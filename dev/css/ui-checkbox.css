@@ -1,0 +1,13 @@
+/*checkbox基本样式*/
+.ui-checkbox i{width:14px; height: 14px; border:1px solid; margin:3px 4px 0 0; display: inline-block; float:left;}
+.ui-checkbox i.checked{font-size: 12px; position: relative; top: 0; font-family: 'Glyphicons Halflings';
+    font-style: normal; font-weight: 400; line-height: 1;}
+.ui-checkbox i.checked:before{content: "\e013";}
+.ui-checkbox{width:100%;}
+.ui-checkbox label{text-align: left;}
+.ui-checkbox .btn{padding-left:0;}
+
+.ui-checkbox-single i{border-radius:6px;}
+.ui-checkbox-single i.checked:before{content:'';}
+.ui-checkbox-single i s{text-decoration: none; width:8px; height:8px; position: absolute; top:2px; left:2px;
+    border-radius: 8px; display: inline-block;}

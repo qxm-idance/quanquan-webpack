@@ -1,0 +1,25 @@
+<div class="topbar" ng-controller="navTopCtrl">
+	<p><a class="login-out" no  ng-click="loginOut()">退出</a>|<a ui-sref="login" ng-click="userChange()">切换账号</a></p>
+</div>
+<div id="header" class="header">
+	<div class="headerWrapper">
+		<!-- <span class="user-name">{{userName}}</span> -->
+		<div class="logo"><a ui-sref="index"><img src="images/logo.png"></a></div>
+		<div class="info"><p>欢迎登录家校信息平台!</p></div>
+		<div id="menu" class="navbar">
+			<ul class="menu-list">
+				<li ng-class="{'active':$state.current.name.search('index')>=0}"><a ui-sref="index">首页</a></li>
+				<li ng-class="{'active':$state.current.name.search('homeworkManage')>=0}"><a ui-sref="homeworkManage">作业</a></li>
+				<li ng-class="{'active':$state.current.name.search('noticeManage')>=0}"><a ui-sref="noticeManage">公告</a></li>
+				<li ng-class="{'active':$state.current.name.search('classManage')>=0}"><a ui-sref="classManage">我的班级</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="banner">
+	<div class="banner-inner">
+		<div class="divider"></div>
+		<img src="images/bannerBar.png">
+	</div>
+</div>
+		

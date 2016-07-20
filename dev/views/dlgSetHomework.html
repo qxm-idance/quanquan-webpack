@@ -1,0 +1,45 @@
+<div class="self-define">
+	<div class="modal-header">
+		<h3>布置作业<span>({{p.setDate | date:'yyyy-MM-dd'}})</span></h3>
+	</div>
+	<div class="self modal-body page-main mod-set-homework">
+		<i class="icon icon-close" ng-click="close()"></i>
+		<form class="wrapper">
+			<div class="item">
+				<label class="tit-label"><em>*</em>发送对象</label>
+				<ul class="con cla-info">
+					<li ng-repeat="item in classes" ng-class="{'active':p.classD[$index]}" ng-model="p.classD[$index]"
+						btn-checkbox btn-checkbox-true="{{item.classCode}}">{{item.classNameCla}}
+						<span class="cart" ng-if="p.classD[$index]"></span></li>
+				</ul>
+			</div>
+			<div class="item">
+				<label class="tit-label"><em>*</em>作业科目</label>
+				<div style="width=200px;float:left">
+					<div ui-select
+				        ng-model="p.object"
+				        options="objectData"
+				        key="text"
+				        as-value="value"
+				        width="100%"
+				        >
+				    </div>
+				</div>
+			</div>
+			<div class="item">
+				<label class="tit-label"><em>*</em>作业内容</label>
+				<ul class="con con-textarea">
+					<li ng-repeat="item in p.taskCon"><textarea ng-model="item.con"></textarea> <i ng-if="p.taskCon.length>1"class="icon icon-del-2" ng-click="delectWork($index)"></i></li>
+				</ul>
+			</div>
+			<div class="item">
+				<a class="one-more" ng-click="addWork()"><i class="icon icon-edit"></i><span>再写一条</span></a>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer no-am-bt">
+		<button type="button" class="btn btn-default btn-do" ng-click="query()">发布</button>
+		<button type="button" class="btn btn-default btn-cancel" ng-click="close()">取消</button>
+	</div>
+</div>
+

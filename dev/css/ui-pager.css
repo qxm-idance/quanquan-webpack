@@ -1,0 +1,9 @@
+/*pager*/
+.ui-pager{overflow:hidden; padding:20px 30px;}
+.ui-pager strong,.ui-pager a{display: inline-block; margin-right: 10px; border:1px solid #ccc;
+    background-color: #efefef; padding:3px 6px; color: #333;}
+.ui-pager strong.ui-page-omiss{border:none;}
+.ui-pager strong.ui-pager-dis{color: #999; cursor: default;}
+.ui-pager .ui-pager-add {float:left;}
+.ui-pager .ui-pager-inner{float:right;}
+.ui-pager-inner{overflow: hidden;}

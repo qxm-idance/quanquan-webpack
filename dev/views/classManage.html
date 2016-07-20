@@ -1,0 +1,69 @@
+<div ng-controller="classListCtrl"  ng-include src="'views/leftClassList.html'"></div>
+<div class="main-center">
+	<div class="main-center-wrapper child-page-center">
+        <div class="mod mod-cla-desc-list">
+            <h2 class="mod-hd">
+                <i class="icon icon-theme"></i>
+                <span class="title">任课老师-共{{teacherTotal}}人</span>
+            </h2>
+            <div class="mod-bd">
+                <ul class="mod-list mod-teacher-list">
+                    <li ng-repeat="item in teachers" ng-class="{'active':item.isMe}">
+                        <div class="list-wrapper">
+                            <strong class="user-name" ng-bind="item.teacherName"></strong>
+                            <div class="user-pic">
+                                <!-- <img ng-src="{{item.picUrl}}" width="90" height="90"> -->
+                                <img src="images/teacher.png" width="90" height="90">
+                            </div>
+                            <p classs="user-role" ng-bind="item.role"></p>
+                            <p class="user-telno">TEl:{{item.teacherId}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mod mod-cla-desc-list ">
+            <h2 class="mod-hd">
+                <div class="theme">
+                    <i></i>
+                    <span class="title">学生(共{{childrenTotal}}人)</span>
+                </div>
+            </h2>
+            <div class="mod-bd">
+                <ul class="mod-list mod-student-list">
+                    <li ng-repeat="item in children">
+                        <div class="list-wrapper">
+                            <div class="stu-info">
+                                <div class="user-pic"> 
+                                    <img ng-src="{{item.avatar? contextPath+'/'+item.avatar : ''}}" width="85" height="85">
+                                    <!-- <img src="images/stu.png" width="85" height="85"> -->
+                                </div>
+                                <p class="user-No-name"><strong class="user-No" ng-bind="item.childNo"></strong><strong ng-bind="item.childName">渣渣站</strong></p>
+                            </div>
+                            <div class="stu-parent-info">
+                                <dl ng-repeat="it in item.parents">
+                                    <dt ng-if="it.role==1">我是爸爸:</dt> <dt ng-if="it.role==2">我是妈妈:</dt>
+                                    <dd ng-bind="it.parentName"></dd>
+                                    <dt >TEL:</dt><dd ng-bind="item.parentId"></dd>
+                                </dl>
+                                <!--<dl>-->
+                                    <!--<dt >我是妈妈:</dt><dd ng-bind="item.ma"></dd>-->
+                                    <!--<dt>TEL:</dt><dd ng-bind="item.maDel"></dd>-->
+                                <!--</dl>-->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ui-pager"
+             ui-pager
+             ng-model="currentPage"
+             page-size="pageSize"
+             on-pager="onPager(currentPage,self)"
+             total-items="childrenTotal">
+        </div>
+    </div>
+</div>
+			
+

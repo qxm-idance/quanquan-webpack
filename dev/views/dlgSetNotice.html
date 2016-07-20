@@ -1,0 +1,40 @@
+<div class="self-define">
+    <div class="modal-header">
+        <h3>发布公告<span>({{p.setDate | date:'yyyy-MM-dd'}})</span></h3>
+    </div>
+    <div class="self modal-body page-main mod-set-notice">
+        <i class="icon icon-close" ng-click="close()"></i>
+        <form class="wrapper">
+            <div class="item">
+                <label class="tit-label"><em>*</em>发送对象</label>
+                <ul class="con cla-info">
+                    <li ng-repeat="item in classes" ng-class="{'active':p.classD[$index]}" ng-model="p.classD[$index]"
+                        btn-checkbox btn-checkbox-true="{{item.classCode}}">{{item.classNameCla}}
+                        <span class="cart" ng-if="p.classD[$index]"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="item notice-cate">
+                <label class="tit-label"><em>*</em>公告类型</label>
+                <div ui-checkbox data="noticeTypeData" key="text" as-value="value" on-checked="onChecked2(p.noticeType)"
+                     multi="0" ng-model="p.noticeTypeVal" space="2"></div>
+            </div>
+            <div class="item">
+                <label class="tit-label"><em>*</em>公告标题</label>
+                <input class="con" type="text" ng-model="p.noticeTitle" ng-required="required">
+            </div>
+            <div class="item">
+                <label class="tit-label"><em>*</em>公告内容</label>
+                <ul class="con con-textarea">
+                    <li><textarea ng-model="p.notice" ng-required="required"></textarea></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer no-am-bt">
+
+        <button type="button" class="btn btn-default btn-do" ng-click="query()"  ng-class="{disabled: !p.noticeTitle || !p.notice}" title="{{{true: '标题和公告不能为空', false: ''}[!p.noticeTitle || !p.notice]}}" ng-disabled="!p.noticeTitle || !p.notice" >发布</button>
+
+        <button type="button" class="btn btn-default btn-cancel" ng-click="close()">取消</button>
+    </div>
+</div>

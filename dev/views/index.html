@@ -1,0 +1,87 @@
+<div class="main-left">
+	<div class="main-left-wrapper-one">
+		<div class="panel-info">
+			<div class=" user-info">
+				<div class="user-pic"><img src="images/teacher.png" alt=""></div>
+				<p class="user-name"><strong>{{p.tchName}}</strong></p>
+				<p class="user-role"><span>{{p.tchClass}}</span><span>{{p.tchRole}}</span></p>
+			</div>
+			<div class="cla-info">
+				<div class="triangle-bt"></div>
+				<div class="cla-info-wrapper">
+					<dl class="created-cla">
+						<dt>所创班级：</dt>
+						<dd class="cla" ng-repeat="item in classes" ng-bind="item.classNameCla" ng-if="item.role='master'"></dd>
+					</dl>
+					<dl class="join-cla">
+						<dt>加入班级：</dt>
+						<dd class="cla" ng-repeat="item in classes" ng-bind="item.classNameCla" ng-if="item.role!='master'"></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="logout"><a class="login-out-btn" on-click="loginOut()">注销</a></div> -->
+	</div>
+	<div class="main-left-wrapper-two">
+		<div class="panel-set-work">
+			<div class="task">
+				<div class="task-inner" ng-class="{'bd-bt':role=='master'}">
+					<a ng-click="setHomework()">
+						<i class="icon icon-task-work"></i>
+						<p>布置作业</p>
+					</a>
+				</div>
+				<div class="task-inner" ng-if="role=='master'">
+					<a ng-click="setNotice()">
+						<i class="icon icon-task-notice"></i>
+						<p>发布公告</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main-right">
+	<div class="mod mod-notice-list">
+		<h2 class="mod-hd bd-bt">
+			<i class="icon icon-notice"></i>
+			<span class="tit">已发通知</span>
+			<a class="other more" ui-sref="noticeManage">MORE>></a>
+		</h2>
+		<div class="mod-bd">
+			<ul class="notice-lists">
+				<li ng-repeat="item in noticeList" ui-sref="noticeManage()">
+					<h3 class="theme">
+						<i class="icon" ng-class="{'icon-cla-s':item.noticeType=='班级公告','icon-sch-s':item.noticeType=='学校公告'}"></i>
+						<span class="tit" ng-bind="::item.noticeTitle"></span>
+						<span class="date">{{item.updateTime*1000 | date:'yyyy-MM-dd'}}</span>
+					</h3>
+					<p class="desc"  ng-bind="::item.content"></p>
+				</li>
+				<p ng-if="noticeList.length==0" class="no-data">无数据</p>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="main-center">
+	<div class="main-center-wrapper">
+		<div class="mod mod-work-fdbk">
+			<h2 class="mod-hd bd-bt">
+				<i class="square"></i>
+				<span class="tit">最新作业反馈</span>
+			</h2>
+			<div class="mod-bd bd-bt" ng-repeat="item in chartData"  ng-class="{'no-bd':$last}">
+				<div class="panel-chart">
+					<div class="action">
+						<a class="icon icon-work" ui-sref="homeworkEvaluation({homeworkId:item.homeworkId,operType:1,classCode:item.classCode,className:item.classNameCla})"></a>
+						<p>评价作业</p>
+					</div>
+					<div class="chart">
+						<div ui-bar-chart config="config_bar" data="item" style="height:250px"></div>
+					</div>
+					<a class="more" ui-sref="homeworkEvaluation({homeworkId:item.homeworkId,operType:2,classCode:item.classCode,className:item.classNameCla})">&gt;&gt;查看详情</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,58 @@
+<div ng-controller="classListCtrl"  ng-include src="'views/leftClassList.html'"></div>
+<div class="main-center">
+    <div class="main-center-wrapper child-page-center">
+        <div class="mod mod-homework-list">
+            <h2 class="mod-hd">
+                <i class="icon icon-theme"></i>
+                <span class="title">作业列表( 共{{totalItems}}条 )</span>
+            </h2>
+            <div class="mod-bd">
+
+                <ul class="mod-list">
+                    <li>
+                        <div class="list-wrapper">
+                            <h3>
+                                <span class="title">{{nowDate}}作业</span>
+                                <span class="other"></span>
+                            </h3>
+                            <div class="homework-add">
+                                <a class="icon icon-add-work" ng-click="setHomework()"></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-repeat="item in homeworkList">
+                        <a ui-sref="homeworkEvaluation({homeworkId:item.homeworkId,operType:(item.checked?2:3),classCode:item.classCode,className:item.classNameCla})" >
+                            <div class="list-wrapper">
+                                <h3>
+                                    <span class="title">{{item.workTitle}}<i ng-class="{'icon icon-new':item.isNew}"></i></span>
+                                    <i class="icon" ng-class="{'icon-clock':item.checked,'icon-ok':!item.checked}"></i>
+                                    <span class="other" ng-if="item.checked">已评价</span>
+                                    <span class="other" ng-if="!item.checked">待评价</span>
+                                </h3>
+                                <div class="homework-desc">
+                                    <div class="graph-commit">
+                                        <div  radius="50" rscircle2 value="{{item.commitVal}}" total="{{item.totalVal}}" stroke-width="8"></div>
+                                        <div class="commit-text">提交</div>
+                                    </div>
+                                    <div class="details">
+                                        <p><s class="state-wrapper"><i class="i-state i-state-1"></i></s>已完成 : {{item.done}}</p>
+                                        <p><s class="state-wrapper"><i class="i-state i-state-2"></i></s>未完成 : {{item.unDone}}</p>
+                                        <p><s class="state-wrapper"><i class="i-state i-state-3"></i></s>未备注 : {{item.unPs}}</p>
+                                        <p><s class="state-wrapper"><i class="i-state i-state-4"></i></s>未提交 : {{item.unCommit}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ui-pager"
+                 ui-pager
+                 ng-model="currentPage"
+                 page-size="pageSize"
+                 on-pager="onPager(currentPage,self)"
+                 total-items="totalItems">
+            </div>
+        </div>
+    </div>
+</div>

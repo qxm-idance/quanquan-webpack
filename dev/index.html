@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+	<head>
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>圈圈</title>
+		<link type="text/css" rel="stylesheet" href="css/common.css">
+		<link type="text/css" rel="stylesheet" href="css/ui-checkbox.css">
+		<link type="text/css" rel="stylesheet" href="css/checkbox-theme-default.css">
+		<link type="text/css" rel="stylesheet" href="css/ui-dialogs.css">
+		<link type="text/css" rel="stylesheet" href="css/dialogs-theme-default.css">
+		<link type="text/css" rel="stylesheet" href="css/ui-pager.css">
+		<script type="text/javascript" src="js/vendor/echarts.js"></script>
+		<script type="text/javascript" src="js/vendor/angular.js"></script>
+		<script type="text/javascript" src="js/vendor/angular-sanitize.js"></script>
+		<script type="text/javascript" src="js/vendor/angular-ui-router.js"></script>
+		<script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="js/vendor/lodash.min.js"></script>
+		<script type="text/javascript" src="js/lab/ui.js"></script>
+		<script type="text/javascript" src="js/lab/ui.echarts.js"></script>
+		<script type="text/javascript" src="js/lab/ui.charts.js"></script>
+		<script type="text/javascript" src="js/lab/ui.buttons.js"></script>
+    	<script type="text/javascript" src="js/lab/ui.checkbox.js"></script>
+		<script type="text/javascript" src="js/lab/ui.transition.js"></script>
+		<script type="text/javascript" src="js/lab/ui.carousel.js"></script>
+		<script type="text/javascript" src="js/lab/ui.position.js"></script>
+		<script type="text/javascript" src="js/lab/ui.modal.js"></script>
+		<script type="text/javascript" src="js/lab/ui.dialogs.js"></script>
+		<script type="text/javascript" src="js/lab/ui.pager.js"></script>
+		<script type="text/javascript" src="js/lab/raphael.js"></script>
+		<script type="text/javascript" src="js/lab/ui.dropdown.js"></script>
+		<script type="text/javascript" src="js/lab/ui.select.js"></script>
+    	<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/router.js"></script>
+		<script type="text/javascript" src="js/services.js"></script>
+		<script type="text/javascript" src="js/index.ctrl.js"></script>
+	</head>
+	<body>
+		<div  ng-include src="'views/nav.html'"></div>
+		<div id="main" ui-view="main"></div>
+		<script type="text/javascript">
+			(function(){
+				//启动
+				angular.bootstrap(document.getElementsByTagName('html')[0],['ui']);
+			})();
+		</script>
+	</body>
+</html>

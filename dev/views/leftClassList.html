@@ -1,0 +1,18 @@
+<div class="main-left child-page-left">
+	<div class="mod mod-cla-list">
+		<div class="mod-hd">
+			<h2><span class="title">班级列表</span></h2>
+		</div>
+		<div class="mod-bd">
+			<ul class="btn-group">
+				<li btn-radio="item.classCode"
+					ng-click="onClassChange(item.classCode)"
+					ng-repeat="item in classes"
+					ng-class="{'active':claModel==item.classCode}"
+					ng-model="claModel">
+					<i class="square" ng-class="{'active':claModel==item.classCode}"></i><span ng-bind="item.classNameCla"></span></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

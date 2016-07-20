@@ -1,0 +1,50 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div ng-controller="classListCtrl"  ng-include src="'views/leftClassList.html'"></div>
+	<div class="main-center">
+	<div class="main-center-wrapper child-page-center">
+		<div class="mod mod-announ-list">
+			<h2 class="mod-hd">
+				<i class="icon icon-theme"></i>
+				<span class="title">公告列表( 共{{totalItems}}条 )</span>
+			</h2>
+			<div class="mod-bd">
+				<ul class="mod-list">
+					<li ng-if="role=='master'">
+						<div class="list-wrapper announ-add">
+							<a class="icon icon-add-announ" ng-click="setNotice()"></a>
+						</div>
+					</li>
+					<li ng-repeat="item in noticeList">
+						<div class="list-wrapper">
+							<dl>
+								<dt><i class="icon icon-cla-b" ng-class="{'icon-cla-b':item.noticeType=='班级公告','icon-sch-b':item.noticeType=='学校公告'}"></i></dt>
+								<dd>
+									<h3 class="title" ng-bind="item.noticeTitle"></h3>
+									<div class="date" ng-bind="item.updateTime*1000 | date:'yyyy-MM-dd'"></div>
+								</dd>
+							</dl>
+							<p class="desc" ng-bind="item.content"></p>
+							<!--<a class="icon icon-edit"></a>-->
+						</div>
+					</li>
+
+				</ul>
+			</div>
+			<div class="ui-pager"
+                 ui-pager
+                 ng-model="currentPage"
+                 page-size="pageSize"
+                 on-pager="onPager(currentPage,self)"
+                 total-items="totalItems">
+            </div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

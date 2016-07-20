@@ -1,0 +1,100 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>圈圈</title>
+	<link type="text/css" rel="stylesheet" href="css/common.css">
+	<link type="text/css" rel="stylesheet" href="css/ui-checkbox.css">
+	<link type="text/css" rel="stylesheet" href="css/checkbox-theme-default.css">
+	<link type="text/css" rel="stylesheet" href="css/ui-carousel.css">
+
+	<script type="text/javascript" src="js/vendor/echarts.js"></script>
+	<script type="text/javascript" src="js/vendor/angular.js"></script>
+	<script type="text/javascript" src="js/vendor/angular-sanitize.js"></script>
+	<script type="text/javascript" src="js/vendor/angular-ui-router.js"></script>
+	<script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/lodash.min.js"></script>
+	<script type="text/javascript" src="js/lab/ui.js"></script>
+	<script type="text/javascript" src="js/lab/ui.echarts.js"></script>
+    <script type="text/javascript" src="js/lab/ui.charts.js"></script>
+	<script type="text/javascript" src="js/lab/ui.buttons.js"></script>
+	<script type="text/javascript" src="js/lab/ui.checkbox.js"></script>
+	<script type="text/javascript" src="js/lab/ui.transition.js"></script>
+    <script type="text/javascript" src="js/lab/ui.position.js"></script>
+	<script type="text/javascript" src="js/lab/ui.carousel.js"></script>
+    <script type="text/javascript" src="js/lab/ui.modal.js"></script>
+    <script type="text/javascript" src="js/lab/ui.dialogs.js"></script>
+    <script type="text/javascript" src="js/lab/ui.pager.js"></script>
+    <script type="text/javascript" src="js/lab/ui.dropdown.js"></script>
+    <script type="text/javascript" src="js/lab/ui.select.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+	<!--<script type="text/javascript" src="js/router.js"></script>-->
+	<script type="text/javascript" src="js/services.js"></script>
+	<script type="text/javascript" src="js/index.ctrl.js"></script>
+</head>
+<body ng-controller="loginCtrl">
+<div class="login-wrapper web_login user-name" >
+	<div class="login-bk">
+		<carousel interval="myInterval">
+			<slide ng-repeat="item in slides">
+				<img ng-src="{{item.picBackUrl}}">
+			</slide>
+		</carousel>
+	</div>
+	<div class="login-form">
+		<div class="login-way" ng-click="loginWaySwitch=!loginWaySwitch">
+            <a ng-if="loginWaySwitch"><img src="images/two-dimension.png"></a>
+            <!--<a ng-if="!loginWaySwitch"><img src="images/pc.png"></a>-->
+        </div>
+        <div class="login-way" ng-click="loginWaySwitch=!loginWaySwitch">
+            <a ng-if="!loginWaySwitch"><img src="images/pc.png"></a>
+        </div>
+        <div ng-if="loginWaySwitch">
+            <div>
+                <s></s>
+                <s class="s-right"></s>
+                <h3><span>手机号登录</span></h3>
+            </div>
+            <form name="loginForm" ng-submit="onLogin()">
+                <div class="item item-accout">
+                    <label >手机号码</label>
+                    <input type="text" name="phoneNo" id="phoneNo" ng-model="p.userId" placeholder="请输入手机号" />
+                </div>
+                <div class="item item-checkCode">
+                    <label>密码</label>
+                    <input type="text" name="check-code" id="check-code" ng-model="p.pwd" placeholder="输入密码" />
+                    <button class="btn ">获取动态密码</button>
+                </div>
+                <div class="item item-remeber">
+                    <div class="btn-group ui-checkbox">
+                        <label class="btn col-xs-2" ng-class="{active:selfLogin}" ng-model="selfLogin"  btn-checkbox-true="1" btn-checkbox-false="0" btn-checkbox>
+                            <i ng-class="{checked:selfLogin}"></i>记住我
+                        </label>
+                    </div>
+                </div>
+                <div class="item item-submit submit">
+                    <button class="btn login_button" type="submit">登 录</button>
+                </div>
+            </form>
+        </div>
+        <div ng-if="!loginWaySwitch">
+            <h3>扫码登录</h3>
+            <div class="two-dimension-wrapper">
+                <img src="images/erweima.png">
+            </div>
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    function getToken(){
+        var token ='dddf12e31044e74579e023721dd4df47';
+        return token;
+    }
+	(function(){
+		//启动
+		angular.bootstrap(document.getElementsByTagName('html')[0],['ui']);
+	})();
+</script>
+</body>
+</html>
